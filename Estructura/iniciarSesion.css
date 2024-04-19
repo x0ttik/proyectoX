@@ -1,0 +1,43 @@
+body{
+    background-color:cadetblue ;
+}
+.formato{
+    text-align: center;
+    height: 300px;
+    width: 500px;
+    margin-left: 25% ;
+
+}
+
+.principal{
+    color: black;
+    font-weight: 700px;
+}
+
+.secundaria{
+    margin-left: 100px ;
+    color: black;
+    width: 300px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input{
+    color: white;
+}
+
+.formulario_input{
+    width: 30%;
+    background-color: wheat;
+    
+}
+
+.submit{
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background-color: wheat;
+    width: 100px;
+    padding: 6px;
+    margin-top: 10px;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
