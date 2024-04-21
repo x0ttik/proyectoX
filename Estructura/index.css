@@ -1,0 +1,88 @@
+
+/* DAMOS UN COLOR, Y QUE LA ALTURA Y ANCHURA SEA DEL 100% DE LA VENTANA
+ADEMAS OCULTAMOS EL SCROLL HORIZONTALMENTE */
+body{
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+header{
+    width: 100%;
+}
+
+/* NUESTROS REDIRECCIONAMIENTOS A OTROS ARCHIVOS HTML */
+.section2{
+    background-color: #fff;
+    width: 400px;
+    margin-left: 80%;
+    display: flex;
+    
+}
+
+.section2_info{
+    width: 800px;
+    list-style-type: none;
+    color:#000
+}
+
+.section2_links{
+    text-decoration: none;
+    padding: 0 10px 0 10px;
+    font-size: 20px;
+}
+
+/* TITULO PRINCIPAL */
+.tituloPrincipal{
+    width: 900px;
+    height: 50%;
+    padding: 20px 5px;
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+/* BARRA DESPUES DEL NAVEGADOR */
+.box{
+    width: 100%;
+    height: 50px;
+    background-color: #000;
+    display: flex;
+    list-style-type: none;
+    justify-content: flex-end;
+}
+
+
+.boxInfo{
+    color: #fff;
+    font-size: 30px;
+    padding: 5px 157px;
+    margin: 0 40px 0 40px;
+    box-sizing: border-box;
+}
+
+/* EMPIEZAN LOS PRODUCTOS */
+.contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+.fila{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+    
+}
+.productos{
+    width: 20%;
+    height: 200px;
+    background: #3ae;
+    margin: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 20px;
+    
+}
