@@ -1,6 +1,6 @@
 body{
     overflow: hidden;
-    background-color: F0E6E4;
+    background-color: #f0e6e4;
 }
 
 .tituloPrincipal{
@@ -27,6 +27,6 @@ body{
 
 .submit{
     margin-left: 45%;
-    border: 3px solid red;
+    border: none;
     border-radius: 5%;
 }

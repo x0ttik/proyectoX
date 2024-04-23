@@ -1,5 +1,6 @@
 body{
     background: url('images/fondo.JPG') no-repeat;
+    background-color: #F0E6E4;
     background-size: cover;
     background-position: center;
 }
@@ -51,7 +52,12 @@ body{
 .formularioInput{
     background-color: transparent;
     border: transparent;
-    color
+}
+
+.terciario{
+    width: 30%;
+    box-size: border-box;
+    margin-left: 36%;
 }
 
 .submit{
@@ -67,9 +73,6 @@ body{
 }
 
 .crearCuenta{
-    font-size: 18px;
-    width: 120px;
-    height: 100px;
-    margin-left: 20%;
+    padding-left: 50%;
 }
 
