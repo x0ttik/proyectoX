@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title> Inicio de sesion </title>
+    <title> Inicio de sesión </title>
     <link rel="stylesheet" href="iniciarSesion.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -9,33 +9,67 @@
     <header class="head"> 
         <nav> 
             <ul> 
-                <li> <a href = "index.html"> Inicio</a> </li>
-                <li> <a href = "iniciarSesion.html"> Mi cuenta</a> </li>
-                <li> <a href = "nosotros.html"> Sobre nosotros</a>  </li>
+                <li> <a href="index.html"> Inicio</a> </li>
+                <li> <a href="iniciarSesion.html"> Mi cuenta</a> </li>
+                <li> <a href="nosotros.html"> Sobre nosotros</a>  </li>
             </ul>
         </nav>
     </header>
-    <form action="index.html">
+    <form id="iniciarSesionForm" action="#">
         <div class="principal">
             <h1 class="titulo"> MI CUENTA</h1>
-            <h4 class="subtitulo"> INICIAR SESION</h4>
+            <h4 class="subtitulo"> INICIAR SESIÓN</h4>
         </div>
         <div class="secundaria">
-            <h5 class="input1" > <input placeholder = "email"class= "formularioInput" type = "email" required = ""  >  </h5> 
-            <h5 class="input2" >  <input placeholder = "contraseña"class="formularioInput" type="password" required = "" > </h5>
+            <h5 class="input1"> <input id="correoInicio" placeholder="Correo" class="formularioInput" type="email" required> </h5> 
+            <h5 class="input2"> <input id="contrasenaInicio" placeholder="Contraseña" class="formularioInput" type="password" required> </h5>
         </div>
-
         <div class="terciario">
             <label>
                 <input type="checkbox">
-                <span>Recuerdame</span>
+                <span>Recuérdame</span>
             </label>
             <a class="crearCuenta" href="crearCuenta.html">Crear cuenta</a>
         </div>
         <div> 
-            <input type="submit" class="submit">
-        </div>
-        
+            <input type="submit" class="submit" value="Iniciar Sesión">
         </div>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formIniciarSesion = document.querySelector('#iniciarSesionForm');
+
+            // Objeto que simula la base de datos de cuentas de usuario
+            const cuentasUsuarios = {
+                'usuario1@example.com': 'contraseña1',
+                'usuario2@example.com': 'contraseña2',
+                'usuario3@example.com': 'contraseña3'
+            };
+
+            formIniciarSesion.addEventListener('submit', function(event) {
+                const correoInicio = document.querySelector('#correoInicio').value;
+                const contrasenaInicio = document.querySelector('#contrasenaInicio').value;
+
+                if (correoInicio.trim() === '' || contrasenaInicio.trim() === '') {
+                    event.preventDefault();
+                    alert('Por favor completa todos los campos.');
+                    return;
+                }
+
+                // Verificar si la cuenta existe en la base de datos simulada
+                if (cuentasUsuarios[correoInicio] && cuentasUsuarios[correoInicio] === contrasenaInicio) {
+                    // Iniciar sesión exitosa
+                    alert('¡Inicio de sesión exitoso!');
+                } else {
+                    // Cuenta no encontrada
+                    event.preventDefault();
+                    alert('Usuario no encontrado. Por favor crea una cuenta.');
+                    // Redirigir a la página de creación de cuenta (opcional)
+                    window.location.href = 'crearCuenta.html';
+                }
+            });
+        });
+    </script>
 </body>
+</html>

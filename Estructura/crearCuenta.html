@@ -7,21 +7,32 @@
     <link rel="icon" href="images/logoProvicional.png" type="image/png">
 </head>
 <body>
-        <div>
-            <h1 class="tituloPrincipal"> CREAR CUENTA </h1>
-        </div>
+    <div>
+        <h1 class="tituloPrincipal"> CREAR CUENTA </h1>
+    </div>
 
-        <div>
-            <form class="input_form" action="index.html">
-            <h5> Nombre: <input class="input" type="text" required = ""></h5>
-            <h5> Apellido: <input class="input" type="text" required = " "></h5>
-            <h5> Fecha de nacimiento: <input class="input" type="date" type="" required = " "></h5>
-            <h5> Correo: <input class="input" type="email" required = ""></h5>
-            <h5> Contraseña: <input class="input" type="password" required = " " ></h5>
-            <input class="submit" type = "submit" value="Crear"> </a>
-            </form>
-        </div>
-    
+    <div>
+        <form id="crearCuentaForm" class="input_form" action="index.html">
+            <h5> Nombre: <input id="nombre" class="input" type="text" required></h5>
+            <h5> Apellido: <input id="apellido" class="input" type="text" required></h5>
+            <h5> Fecha de nacimiento: <input id="fechaNacimiento" class="input" type="date" required></h5>
+            <h5> Correo: <input id="correo" class="input" type="email" required></h5>
+            <h5> Contraseña: <input id="contrasena" class="input" type="password" required></h5>
+            <input class="submit" type="submit" value="Crear">
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formCrearCuenta = document.querySelector('#crearCuentaForm');
+
+            formCrearCuenta.addEventListener('submit', function(event) {
+                if (!formCrearCuenta.checkValidity()) {
+                    event.preventDefault();
+                    alert('Por favor completa todos los campos correctamente.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-

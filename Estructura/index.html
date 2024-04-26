@@ -1,112 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title> Tienda de gorras </title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="index.css">
-        <link rel="icon" href="images/logoProvicional.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de gorras</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="images/logoProvicional.png" type="image/png">
 </head>
 <body>
-        <header> 
+    <header> 
         <!-- NAVEGADOR -->
         <nav> 
-                <h1 class="tituloPrincipal"> Las mejores gorras de Tijuana </h1>
-
-                <ul class="section2"> 
-                        <li class="section2_info"> <a class="section2_links" href = "index.html"> Inicio</a> </li>
-                        <li class="section2_info"> <a class="section2_links" href = "nosotros.html"> Sobre nosotros</a>  </li>
-                        <li class="section2_info"> <a class="section2_links" href = "iniciarSesion.html"> Mi cuenta</a> </li>
-                </ul>
+            <h1 class="tituloPrincipal">Las mejores gorras de Tijuana</h1>
+            <ul class="section2"> 
+                <li class="section2_info"> <a class="section2_links" href="index.html">Inicio</a> </li>
+                <li class="section2_info"> <a class="section2_links" href="nosotros.html">Sobre nosotros</a> </li>
+                <li class="section2_info"> <a class="section2_links" href="iniciarSesion.html">Mi cuenta</a> </li>
+            </ul>
         </nav> 
-        </header>
+    </header>
 
-        <!-- Barra negra -->
-        <div> 
-                <ul class="box">
-                        <li class="boxInfo" class="box1"> SALE </li>
-                        <li class="boxInfo"> SUMMER </li>
-                        <li class="boxInfo"> MEN </li>
-                        <li class="boxInfo"> WOMEN </li>
-                </ul>
-        </div>
+    <!-- Barra negra -->
+    <div> 
+        <ul class="box">
+            <li class="boxInfo">SALE</li>
+            <li class="boxInfo">SUMMER</li>
+            <li class="boxInfo">MEN</li>
+            <li class="boxInfo">WOMEN</li>
+        </ul>
+    </div>
 
-        <!-- PRODUCTOS -->
-        <div class="contenedor">
-                <div class="fila">
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                </div>
+    <!-- PRODUCTOS -->
+    <div class="contenedor">
+        <div class="fila">
+            <div class="productos" data-id="1">
+                <h3>Producto 1</h3>
+                <p>Precio: $10.00</p>
+                <button class="add-to-cart">Agregar al Carrito</button>
+            </div>
+            <div class="productos" data-id="2">
+                <h3>Producto 2</h3>
+                <p>Precio: $15.00</p>
+                <button class="add-to-cart">Agregar al Carrito</button>
+            </div>
+            <!-- Puedes agregar más productos aquí -->
         </div>
-        <div class="contenedor">
-                <div class="fila">
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                </div>
-        </div>
-        <div class="contenedor">
-                <div class="fila">
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                </div>
-        </div>
-        <div class="contenedor">
-                <div class="fila">
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                        <div class="productos">
-                                PRECIO
-                        </div>
-                </div>
-        </div>
+    </div>
+
+    <!-- Sección del carrito -->
+    <div id="carrito">
+        <h2>Carrito de Compras</h2>
+        <ul id="lista-carrito"></ul>
+        <p>Total: <span id="total"></span></p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const listaCarrito = document.querySelector('#lista-carrito');
+            const totalCarrito = document.querySelector('#total');
+
+            // Cargar carrito desde localStorage al inicio
+            cargarCarrito();
+
+            // Agregar evento click a cada botón "Agregar al Carrito"
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', agregarProductoAlCarrito);
+            });
+
+            function agregarProductoAlCarrito(event) {
+                const producto = event.target.closest('.productos');
+                const productoId = producto.dataset.id;
+                const productoNombre = producto.querySelector('h3').textContent;
+                const productoPrecio = parseFloat(producto.querySelector('p').textContent.replace('$', ''));
+
+                // Crear objeto del producto
+                const nuevoProducto = {
+                    id: productoId,
+                    nombre: productoNombre,
+                    precio: productoPrecio,
+                    cantidad: 1
+                };
+
+                // Agregar producto al carrito
+                agregarAlCarrito(nuevoProducto);
+
+                // Actualizar y guardar carrito en localStorage
+                guardarCarrito();
+            }
+
+            function agregarAlCarrito(nuevoProducto) {
+                const elementosCarrito = Array.from(listaCarrito.children);
+
+                // Verificar si el producto ya está en el carrito
+                const productoExistente = elementosCarrito.find(item => item.dataset.id === nuevoProducto.id);
+
+                if (productoExistente) {
+                    // Incrementar la cantidad si el producto ya está en el carrito
+                    const cantidad = parseInt(productoExistente.querySelector('.cantidad').textContent) + 1;
+                    productoExistente.querySelector('.cantidad').textContent = cantidad;
+                } else {
+                    // Crear nuevo elemento en el carrito si el producto no está presente
+                    const nuevoElementoCarrito = document.createElement('li');
+                    nuevoElementoCarrito.dataset.id = nuevoProducto.id;
+                    nuevoElementoCarrito.innerHTML = `
+                        ${nuevoProducto.nombre} - Precio: $${nuevoProducto.precio} - Cantidad: <span class="cantidad">1</span>
+                        <button class="eliminar-item">Eliminar</button>
+                    `;
+                    listaCarrito.appendChild(nuevoElementoCarrito);
+                }
+
+                // Actualizar el total del carrito
+                actualizarTotalCarrito();
+            }
+
+            function actualizarTotalCarrito() {
+                const elementosCarrito = Array.from(listaCarrito.children);
+                let total = 0;
+
+                elementosCarrito.forEach(item => {
+                    const precio = parseFloat(item.textContent.split('$')[1]);
+                    const cantidad = parseInt(item.querySelector('.cantidad').textContent);
+                    total += precio * cantidad;
+                });
+
+                totalCarrito.textContent = `$${total.toFixed(2)}`;
+            }
+
+            function cargarCarrito() {
+                const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+                carrito.forEach(item => {
+                    agregarAlCarrito(item);
+                });
+            }
+
+            function guardarCarrito() {
+                const elementosCarrito = Array.from(listaCarrito.children);
+                const carrito = elementosCarrito.map(item => {
+                    const id = item.dataset.id;
+                    const nombre = item.textContent.split(' - ')[0];
+                    const precio = parseFloat(item.textContent.split('$')[1]);
+                    const cantidad = parseInt(item.querySelector('.cantidad').textContent);
+                    return { id, nombre, precio, cantidad };
+                });
+
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+            }
+
+            // Evento para eliminar un elemento del carrito
+            listaCarrito.addEventListener('click', function(event) {
+                if (event.target.classList.contains('eliminar-item')) {
+                    const item = event.target.parentElement;
+                    const id = item.dataset.id;
+
+                    // Eliminar elemento del DOM
+                    item.remove();
+                                
+                    // Actualizar carrito en localStorage
+                    guardarCarrito();
+
+                    // Recalcular el total del carrito
+                    actualizarTotalCarrito();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
