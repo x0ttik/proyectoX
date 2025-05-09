@@ -167,7 +167,7 @@ int main(){
     // Variables
 
     opcion = 0;
-    float mediaRecortada = 0;
+    float mediaRecortada = 0, mediaRecortadaOriginal = 0;
     // float valorRecortar = 0;
     float porcentaje = 0;
 
@@ -191,36 +191,49 @@ int main(){
 
         porcentaje = (float)recorte / 100;
 
-        mediaRecortada = n * porcentaje; 
+        mediaRecortadaOriginal = n * porcentaje; 
 
         // TEMPORAL // Ver que media recortada se imprima bien 
-        printf(" \n Media recortada: %.2f \n", mediaRecortada);
+        printf(" \n Porcentaje: %.2f \n", porcentaje);
 
-        mediaRecortada = mediaRecortada / 2;
+        // TEMPORAL // Ver que media recortada se imprima bien 
+        printf(" \n Media recortada: %.2f \n", mediaRecortadaOriginal);
+
+        // Temporal
+        mediaRecortada = mediaRecortadaOriginal / 2;
         
         // TEMPORAL // Ver que media recortada se imprima bien  
         printf(" \n Media recortada: %.2f \n", mediaRecortada);
 
         int nTemporal = 0;
-        nTemporal = n - recorte;
+        nTemporal = n - mediaRecortadaOriginal; // Creamos variable de nuevo (n = tamanio del arreglo - valores a recortar)
 
-        mediaRecortada = mediaRecortada / 2;
+        // TEMPORAL // Ver que media recortada se imprima bien 
+        printf(" \n n temporal: %d \n", nTemporal);
 
+        mediaRecortada = mediaRecortadaOriginal / 2;
+
+        // Ciclo para eliminar el recorte del inicio del arreglo original
         printf(" -------------------- \n ");
         for(int i = 0; i < mediaRecortada; i++){
             arreglo[i] = 0;
-            printf("\n -- %f -- \n", arreglo[i]);
         }
         printf(" -------------------- \n ");
 
+        // Ciclo para eliminar el recorte del final del arreglo original
         for(int i = n - mediaRecortada; i <  n; i++){
             arreglo[i] = 0;
         }
 
+        suma = 0; 
         // Hacemos la suma del nuevo arreglo;
         for(int i = 0; i < n; i++){
             suma = suma + arreglo[i];
         }
+
+        // TEMPORAL // Ver que suma se imprima bien 
+        printf(" \n Suma: %.2f \n", suma);
+        
 
         // Verificamos que se guarde correctamente el arreglo
         for(int i = 0; i < n; i++){
@@ -240,6 +253,45 @@ int main(){
         printf("Ingrese la cantidad a recortar: \n");
         scanf("%d", &recorte);
 
+        mediaRecortada = recorte / 2;
+
+        nTemporal = 0;
+        nTemporal = n - recorte; // Creamos variable de nuevo n (n = tamanio del arreglo - valores a recortar)
+
+
+        // Ciclo para eliminar el recorte del inicio del arreglo original
+        printf(" -------------------- \n ");
+        for(int i = 0; i < mediaRecortada; i++){
+            arreglo[i] = 0;
+        }
+        printf(" -------------------- \n ");
+
+        // Ciclo para eliminar el recorte del final del arreglo original
+        for(int i = n - mediaRecortada; i <  n; i++){
+            arreglo[i] = 0;
+        }
+
+        suma = 0; 
+        // Hacemos la suma del nuevo arreglo;
+        for(int i = 0; i < n; i++){
+            suma = suma + arreglo[i];
+        }
+
+        // TEMPORAL // Ver que suma se imprima bien 
+        printf(" \n Suma: %.2f \n", suma);
+        
+
+        // Verificamos que se guarde correctamente el arreglo
+        for(int i = 0; i < n; i++){
+            printf("%.2f - ", arreglo[i]);
+
+        }
+        mediaRecortada = 0;
+
+        mediaRecortada = suma / nTemporal;
+
+        printf(" \n -------------------- \n ");
+        printf("La media recortada a un %d porciento es: %.2f \n" , recorte, mediaRecortada);
         break;
 
     default:
